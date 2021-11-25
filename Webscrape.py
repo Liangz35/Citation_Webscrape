@@ -5,20 +5,27 @@ import streamlit as st
 
 @st.cache()
 def URL_to_intext(URL):
-    page = requests.get(URL)
-    soup = BeautifulSoup(page.content, "html.parser")
-    authors = soup.find_all("a", class_ = "full-name")
-    authors = [author.text.strip() for author in authors]
-    main_author = authors[0].split(' ')[-1]
+    try:
+        page = requests.get(URL)
+        soup = BeautifulSoup(page.content, "html.parser")
+    except:
+        pass
 
-    publication = soup.find("span", class_ = "cit")
-    publication = publication.text.strip()
-    publication_year = re.findall('[0-9]+',publication)[0]
+    if "https://pubmed.ncbi.nlm.nih.gov/" in URL:
+        authors = soup.find_all("a", class_ = "full-name")
+        authors = [author.text.strip() for author in authors]
+        main_author = authors[0].split(' ')[-1]
+
+        publication = soup.find("span", class_ = "cit")
+        publication = publication.text.strip()
+        publication_year = re.findall('[0-9]+',publication)[0]
 
     if len(authors) > 1:
         return "(" + main_author + " et al., " + publication_year + ")"
     else:
         return "(" + main_author + ", " + publication_year + ")"
+
+
 
 @st.cache()
 def document_citation(document: str, delimiter: str = "[]"):

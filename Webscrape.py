@@ -1,7 +1,9 @@
 from bs4 import BeautifulSoup
 import re
 import requests
+import streamlit as st
 
+@st.cache()
 def URL_to_intext(URL):
     page = requests.get(URL)
     soup = BeautifulSoup(page.content, "html.parser")
@@ -18,7 +20,7 @@ def URL_to_intext(URL):
     else:
         return "(" + main_author + ", " + publication_year + ")"
 
-
+@st.cache()
 def document_citation(document: str, delimiter: str = "[]"):
 
     if len(delimiter)%2 != 0:

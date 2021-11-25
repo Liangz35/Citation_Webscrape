@@ -2,9 +2,12 @@ import streamlit as st
 import Webscrape
 
 
-document = st.text_area("Insert document text", height = 600, )
+document = st.text_area("Insert document text", height = 600)
 delimiter = st.text_input("Insert delimiter")
-document_read = st.button("Read document", help = "After entering your document, you can press this button to create a cited file", on_click = Webscrape.document_citation(document, delimiter))
+
+if st.button("Read document", help = "After entering your document, you can press this button to create a cited file"):
+    file = Webscrape.document_citation(document, delimiter)
+    st.write(file)
 
 
 uploaded_file = st.file_uploader("Upload document or text file", type = ['.txt','.docx'])

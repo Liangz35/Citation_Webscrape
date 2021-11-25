@@ -9,7 +9,7 @@ Insert your document with PubMed links to convert them to in-text citations
 
 """)
 
-with st.form():
+with st.form(key = "form1"):
     document = st.text_area("Insert document text", height = 600)
     delimiter = st.text_input("Insert delimiter")
 

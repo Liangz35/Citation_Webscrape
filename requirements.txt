@@ -1,4 +1,4 @@
-python -m pip install streamlit
-python -m pip install beautifulsoup4
-python -m pip install requests
-python -m pip install python-docx
+streamlit
+beautifulsoup4
+requests
+python-docx

@@ -2,12 +2,20 @@ import streamlit as st
 import Webscrape
 
 
-document = st.text_area("Insert document text", height = 600)
-delimiter = st.text_input("Insert delimiter")
+st.write("""   
+# In-text Citation Generator
+
+Insert your document with PubMed links to convert them to in-text citations
+
+""")
+
+with st.form():
+    document = st.text_area("Insert document text", height = 600)
+    delimiter = st.text_input("Insert delimiter")
 
 if st.button("Read document", help = "After entering your document, you can press this button to create a cited file"):
     file = Webscrape.document_citation(document, delimiter)
-    st.write(file)
+    st.text(file)
 
 
 uploaded_file = st.file_uploader("Upload document or text file", type = ['.txt','.docx'])

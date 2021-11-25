@@ -13,8 +13,8 @@ with st.form(key = "form1"):
     document = st.text_area("Insert document text", height = 600)
     delimiter = st.text_input("Insert delimiter")
     if st.form_submit_button("Read document", help = "After entering your document, you can press this button to create a cited file"):
-        file = Webscrape.document_citation(document, delimiter)
-        st.text(file)
+        st.write(Webscrape.document_citation(document, delimiter))
+
 
 
 uploaded_file = st.file_uploader("Upload document or text file", type = ['.txt','.docx'])

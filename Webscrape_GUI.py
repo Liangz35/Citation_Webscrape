@@ -2,6 +2,8 @@ import Webscrape
 import streamlit as st
 from docx import Document
 
+st.set_page_config(page_title = "In-text Citation Generator", page_icon= ":book:")
+
 st.write("""   
 # In-text Citation Generator
 
